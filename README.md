@@ -3,7 +3,6 @@ Spotify Wrapped is not detailed enough. Here, I explore my listening habits with
 
 ## Collect_recently_played_songs.py
 Collects the following data for each song:
-
 - Title
 - Main Artist
 - Album Name
@@ -29,3 +28,10 @@ The script runs continuously, collecting data every 2 hours and saving it to a .
 3. Run script in your environment.
 4. The collected data is saved into a CSV file named 'recently_played_songs.csv'.
 5. After collection the script will go to sleep for 2 hours before collecting again.
+
+
+## WrappedUnpacked.ipynb
+Contains functions to collect information about the users
+- top 50 tracks
+- saved songs (all)
+- recently played songs
