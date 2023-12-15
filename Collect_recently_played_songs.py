@@ -101,6 +101,9 @@ def get_recently_played_songs(spotify):
         first_artist_id = item['track']['artists'][0]['id']
         first_artist = spotify.artist(first_artist_id)
         first_artist_name = first_artist['name']
+        artists = []
+        for artist in item['track']['artists']:
+            artists.append(artist['name'])
         genres = first_artist['genres']
         length = item['track']['duration_ms']
         popularity = item['track']['popularity']
@@ -110,7 +113,7 @@ def get_recently_played_songs(spotify):
             context = 'saved'
         explicit = item['track']['explicit']
 
-        tracks.append([song_name, first_artist_name, album_name, genres, length, popularity, release_date, context, explicit, played_at])
+        tracks.append([song_name, artists, album_name, genres, length, popularity, release_date, context, explicit, played_at])
 
     return tracks
 
@@ -120,10 +123,10 @@ if __name__ == "__main__":
         print('**Collecting...')
         spotify = authenticate_spotify()
         recently_played_songs = get_recently_played_songs(spotify)
-        recently_played_songs_df = pd.DataFrame(recently_played_songs, columns=['Title', 'First Artist', 'Album', 'Genre', 'Length (ms)', 'Popularity', 'Release Date', 'Context', 'Explicit', 'Played at'])
+        recently_played_songs_df = pd.DataFrame(recently_played_songs, columns=['Title', 'Artists', 'Album', 'Genre', 'Length (ms)', 'Popularity', 'Release Date', 'Context', 'Explicit', 'Played at'])
         recently_played_songs_df.sort_values('Played at', axis=0, ascending=True, inplace=True)
         try:
-            recently_played_songs_df.to_csv('recently_played_songs.csv', mode='a', header=False, index=False)
+            recently_played_songs_df.to_csv('recently_played_songs.csv', mode='a', encoding='utf-8-sig', header=False, index=False)
         except PermissionError:
             print('**The csv file seems to be open. Please close it and try again.')
             sys.exit()
