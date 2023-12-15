@@ -4,9 +4,9 @@ Spotify Wrapped is not detailed enough. Here, I explore my listening habits with
 ## Collect_recently_played_songs.py
 Collects the following data for each song:
 - Title
-- Main Artist
+- All Artists
 - Album Name
-- Genres associated with the main artist
+- Genres associated with the first artist
 - Length (in milliseconds)
 - Popularity from 0 (unpopular) to 1 (super popular)
 - Release Date of the album
